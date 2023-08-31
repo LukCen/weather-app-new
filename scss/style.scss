@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    font-size: 10px;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Overpass', sans-serif
+}
+
+body {
+    background-image: linear-gradient(to bottom right, rgb(42, 218, 245), rgb(89, 117, 226));
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+main {
+    border: 3px solid lightblue;
+    border-radius: 10px;
+    height: 300px;
+    width: 200px;
+    padding: 10px;
+}
+
+.form-container {
+    // border: 1px solid pink;
+    height: 40px;
+    display: grid;
+    grid-template-columns: 11fr 1fr;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+
+
+    & input {
+        height: 70%;
+        font-size: 1.25rem;
+        width: 100%;
+    }
+
+    & button {
+        height: 70%;
+        width: 30px;
+        border-radius: 25%;
+        background-image: linear-gradient(to bottom right, rgb(42, 218, 245), rgb(89, 117, 226));
+        border: 2px solid rgb(89, 117, 226);
+        cursor: pointer;
+
+        &:hover {
+            border: 2px solid rgb(42, 218, 245);
+            background-image: linear-gradient(to bottom right, rgb(89, 117, 226), rgb(42, 218, 245))
+        }
+
+
+        & i {
+            display: grid;
+            place-items: center;
+            font-size: 1.55rem;
+            color: white;
+        }
+    }
+}
+
+
+.weather-data-container {
+    // border: 1px solid red;
+    height: 85%;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 5fr 5fr 2fr;
+    padding-top: 5px;
+    color: white;
+
+    p {
+        display: grid;
+        grid-row: 2/2;
+        width: 95%;
+        height: 95%;
+        place-content: center;
+        padding: 5px;
+    }
+}
+
+.extra-icons,
+box-icon,
+svg {
+    font-size: 2rem;
+    color: white;
+}
+
+img {
+    display: grid;
+    grid-column: 1 / span 2;
+    transform: scale(1.25)
+}
+
+.weather-data-temperature {
+    // border: 1px solid purple;
+    font-size: 2rem;
+    grid-column: 1/1
+}
+
+.weather-data-city-name {
+    // border: 1px solid purple;
+    font-size: 2rem;
+    grid-column: 2/2
+}
+
+.weather-data-windspeed,
+.weather-data-humidity {
+    display: grid;
+    // border: 1px solid limegreen;
+    text-align: center;
+    align-items: center;
+    font-size: 1.85rem;
+    place-items: center;
+}
+
+.weather-data-windspeed {
+    grid-column: 1 /1;
+    height: 95%;
+    width: 95%
+}
+
+.weather-data-humidity {
+    grid-column: 2 / 2;
+    height: 95%;
+    width: 95%
+}
