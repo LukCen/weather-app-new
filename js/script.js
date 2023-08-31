@@ -13,6 +13,8 @@ async function getWeatherData(){
     const weatherDataWindspeed = document.querySelector('.weather-data-windspeed');
     const weatherDataHumidity = document.querySelector('.weather-data-humidity');
 
+
+    // these two use a custom element from the Boxicons library for a tiny bit of eye candy
     const iconWindspeed = document.createElement('box-icon')
     iconWindspeed.setAttribute('name', 'wind')
     iconWindspeed.setAttribute('color', '#ffffff')
@@ -27,14 +29,18 @@ async function getWeatherData(){
 
     if(response.ok){
         const finalResult = await response.json()
+
         weatherImage.src = finalResult.current.condition.icon;
+        
         weatherDataCityName.textContent = finalResult.location.name
         weatherDataTemp.textContent = `${finalResult.current.temp_c}°C`
 
+        // empties the content of these elements before appending the fetched results
+
         weatherDataWindspeed.innerHTML = '';
         weatherDataHumidity.innerHTML = '';
-        // weatherDataWindspeed.append(iconWindspeed, finalResult.current.wind_kph)
-        // weatherDataWindspeed.appendChild(${iconWindspeed)
+      
+        // this looks ugly, but its how I managed to include both the icon and the data in the same container without having to mess around with styling
         weatherDataWindspeed.appendChild(iconWindspeed)
         weatherDataWindspeed.insertAdjacentHTML('beforeend', `<p>${finalResult.current.wind_kph} km/h</p>`)
 
@@ -48,6 +54,8 @@ async function getWeatherData(){
 }
 
 btnFetch.addEventListener('click', () => {
+
+    // simple check for an empty input
     if(userQuery.value === ''){
         alert('Please input a valid city name into the search bar, then try again!')
     } else {
