@@ -1,3 +1,8 @@
+@media screen and (min-width: 700px) {
+  body > * {
+    transform: scale(1.35);
+  }
+}
 * {
   box-sizing: border-box;
   font-size: 10px;
@@ -17,8 +22,8 @@ body {
 main {
   border: 3px solid lightblue;
   border-radius: 10px;
-  height: 300px;
-  width: 200px;
+  height: 400px;
+  width: 250px;
   padding: 10px;
 }
 
