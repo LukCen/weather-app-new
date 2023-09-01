@@ -135,3 +135,12 @@ img {
     height: 95%;
     width: 95%
 }
+
+.loader-container {
+    display: grid;
+    grid-column: 1 / span 2;
+    margin: 0 auto;
+    width: 100%;
+    place-items: center;
+    font-size: 2.25rem;
+}

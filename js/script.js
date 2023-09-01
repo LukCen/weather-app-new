@@ -4,15 +4,23 @@ const userQuery = document.querySelector('.user-query')
 const btnFetch = document.querySelector('.btn-search')
 const userKey = '7cc4b1b363df46e7aa2112456232808'
 
+
 async function getWeatherData(){
+   
+  
     const linkToQuery = `https://api.weatherapi.com/v1/current.json?key=${userKey}&q=${userQuery.value.toLowerCase()}`
 
     const weatherImage = document.querySelector('img')
+
+    const loaderContainer = document.createElement('div')
+    loaderContainer.classList.add('loader-container')
+
+
     const weatherDataTemp = document.querySelector('.weather-data-temperature');
     const weatherDataCityName = document.querySelector('.weather-data-city-name');
     const weatherDataWindspeed = document.querySelector('.weather-data-windspeed');
     const weatherDataHumidity = document.querySelector('.weather-data-humidity');
-
+    const weatherDataContainer = document.querySelector('.weather-data-container')
 
     // these two use a custom element from the Boxicons library for a tiny bit of eye candy
     const iconWindspeed = document.createElement('box-icon')
@@ -23,13 +31,25 @@ async function getWeatherData(){
     iconHumidity.setAttribute('name', 'water')
     iconHumidity.setAttribute('color', '#ffffff')
 
+    // little loading animation appearing before the data is properly displayed
+    let spinner = document.createElement('box-icon')
+    spinner.setAttribute('name', 'loader')
+    spinner.setAttribute('animation', 'spin')
+    spinner.setAttribute('color', '#ffffff')
+    loaderContainer.append('Fetching data...',spinner)
+    
+    
+    weatherDataContainer.prepend(loaderContainer)
+    
     const response = await fetch(linkToQuery, {mode: 'cors'}).catch((err => {console.log(err)}))
 
     
 
     if(response.ok){
+        
+        loaderContainer.remove()
         const finalResult = await response.json()
-
+        
         weatherImage.src = finalResult.current.condition.icon;
         
         weatherDataCityName.textContent = finalResult.location.name
@@ -54,7 +74,7 @@ async function getWeatherData(){
 }
 
 btnFetch.addEventListener('click', () => {
-
+    
     // simple check for an empty input
     if(userQuery.value === ''){
         alert('Please input a valid city name into the search bar, then try again!')
